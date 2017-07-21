@@ -147,12 +147,10 @@ public class ArticleDetailFragment extends Fragment implements
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle();
-
                 getContext().startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
                         .setText("Some sample text")
-                        .getIntent(), getString(R.string.action_share)), bundle);
+                        .getIntent(), getString(R.string.action_share)));
             }
         });
 
