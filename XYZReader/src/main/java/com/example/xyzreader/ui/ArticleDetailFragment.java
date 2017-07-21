@@ -1,5 +1,6 @@
 package com.example.xyzreader.ui;
 
+import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Intent;
@@ -16,7 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
@@ -130,7 +133,7 @@ public class ArticleDetailFragment extends Fragment implements
             public void onScrollChanged() {
                 mScrollY = mScrollView.getScrollY();
                 getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
-                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
+                mPhotoContainerView.setTranslationY((int) (- mScrollY / PARALLAX_FACTOR));
                 updateStatusBar();
             }
         });
@@ -141,12 +144,15 @@ public class ArticleDetailFragment extends Fragment implements
         mStatusBarColorDrawable = new ColorDrawable(0);
 
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle();
+
+                getContext().startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
                         .setText("Some sample text")
-                        .getIntent(), getString(R.string.action_share)));
+                        .getIntent(), getString(R.string.action_share)), bundle);
             }
         });
 
@@ -242,8 +248,6 @@ public class ArticleDetailFragment extends Fragment implements
                                 Palette p = Palette.generate(bitmap, 12);
                                 mMutedColor = p.getDarkMutedColor(0xFF333333);
                                 mPhotoView.setImageBitmap(imageContainer.getBitmap());
-                                mRootView.findViewById(R.id.meta_bar)
-                                        .setBackgroundColor(mMutedColor);
                                 updateStatusBar();
                             }
                         }
