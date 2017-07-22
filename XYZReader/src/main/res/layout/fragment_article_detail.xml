@@ -54,18 +54,6 @@
                         android:textSize="@dimen/detail_title_text_size"
                         android:lineSpacingMultiplier="0.9"
                         tools:text="Article header"/>
-                    <!--<TextView-->
-                    <!--android:id="@+id/article_title"-->
-                    <!--style="?android:attr/textAppearanceLarge"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"-->
-                    <!--android:fontFamily="sans-serif-condensed"-->
-                    <!--android:textColor="#fff"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="@dimen/detail_title_text_size"-->
-                    <!--android:lineSpacingMultiplier="0.9"-->
-                    <!--tools:text="Article header"/>-->
 
                     <TextView
                         android:id="@+id/article_byline"
@@ -86,7 +74,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/photo_container"
                 app:layout_constraintRight_toRightOf="@id/photo_container"
                 android:layout_marginTop="@dimen/detail_metabar_vert_padding"
-
                 >
                 <com.example.xyzreader.ui.MaxWidthLinearLayout
                     android:orientation="vertical"
@@ -129,6 +116,7 @@
         android:layout_height="56dp"
         app:fabSize="normal"
         android:src="@drawable/ic_share"
-        android:contentDescription="@string/action_share" />
+        android:contentDescription="@string/action_share"
+        android:elevation="6dp"/>
 
 </com.example.xyzreader.ui.DrawInsetsFrameLayout>
